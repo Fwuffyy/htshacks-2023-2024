@@ -1,0 +1,8 @@
+{
+    "ignore": [
+        "node_modules/**/*",
+        "dist/**/*"
+    ],
+    "ext": "*.ts",
+    "exec": "make || exit 1"
+}

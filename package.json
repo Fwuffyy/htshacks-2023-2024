@@ -1,0 +1,17 @@
+{
+  "name": "template",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/web": "^0.0.115"
+  },
+  "scripts": {
+    "dev": "nodemon --config nodemon.json"
+  }
+}
