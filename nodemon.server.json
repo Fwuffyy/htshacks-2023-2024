@@ -1,0 +1,9 @@
+{
+    "watch": [ "server" ],
+    "ignore": [
+        "node_modules/**/*",
+        "dist/**/*"
+    ],
+    "ext": "*.ts",
+    "exec": "bun run server/index.ts"
+}
