@@ -1,4 +1,5 @@
 {
+    "watch": [ "dist/bundle.js" ],
     "ignore": [
         "node_modules/**/*",
         "dist/**/*"

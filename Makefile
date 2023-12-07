@@ -1,6 +1,11 @@
 BUILD_OPTIONS=--minify
 
-.PHONY: build
+.PHONY: build client
 
-build:
-	bun build ./src --outfile ./dist/bundle.js $(BUILD_OPTIONS)
+client:
+	@bun build ./src --outfile ./dist/bundle.js $(BUILD_OPTIONS)
+
+# server:
+# 	@bun build ./server --outfile ./dist/server/bundle.js $(BUILD_OPTIONS)
+
+build: client
