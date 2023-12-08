@@ -58,7 +58,7 @@ header nav {
     gap: 50px;
     align-items: center;
     z-index: 2;
-    margin-top: 20px;
+    margin-top: 40px;
     overflow: hidden;
     transition: height 1s;
     padding-left: 0px 10px 0px 10px;
@@ -184,4 +184,116 @@ nav .links a:hover::after {
 
 .slideshow {
     margin-top: 20px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.arrow {
+    padding-top: 70px;
+    text-align: center;
+}
+
+.arrow img {
+    height: 120px;
+    transform: rotate(90deg) translateX(0px);
+    animation: bob-image 1.7s ease-out 0s infinite;
+}
+
+.arrow p {
+    margin-top: 50px;
+}
+
+@keyframes bob-image {
+    0% { transform: rotate(90deg) translateX(0px); }
+    50% { transform: rotate(90deg) translateX(20px); }
+    100% { transform: rotate(90deg) translateX(0px); }
+}
+
+.demo {
+    margin: auto;
+    text-align: center;
+    width: calc(100% - 100px);
+    background: #eeeeee;
+    border-radius: 20px;
+    font-size: 40px;
+    padding: 20px;
+    padding-bottom: 50px;
+    margin-top: 50px;
+}
+
+.demo h2 {
+    padding: 20px;
+    font-size: 50px;
+}
+
+.demo input {
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    color: #000000;
+    background: transparent;
+    font-size: 30px;
+    width: calc(100% - 300px);
+    transition: border-bottom-width 0.2s;
+}
+
+.demo input:focus {
+    border-bottom-width: 3px;
+}
+
+.demo button {
+    font-size: 30px;
+    background: var(--primary-highlight);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.demo #thread {
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--primary-darker);
+    padding: 30px;
+    color: #ffffff;
+    align-items: center;
+    margin-top: 50px;
+}
+
+footer .main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+footer .end-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hts-branding {
+    width: 169px;
+    padding: 5px;
+    background: white;
+}
+
+.hts-link {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.hts-link a {
+    color: var(--primary-light);
 }

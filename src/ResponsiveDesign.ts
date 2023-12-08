@@ -11,8 +11,8 @@ export namespace ResponsiveElements {
         "big-colorful-text": <HTMLDivElement>document.querySelector(".big-title .big-colorful-text")
     }
 
-    const content = {
-        "main-slideshow": <HTMLIFrameElement>document.getElementById("main-slideshow")
+    const footer = {
+        "main-content": <HTMLDivElement>document.querySelector(".main-content")
     }
 
     let navOpen = false;
@@ -21,6 +21,13 @@ export namespace ResponsiveElements {
         tick();
         window.addEventListener("resize", tick);
         window.addEventListener("mousemove", tickDropdownNav);
+
+        const mainSlideshow = <HTMLIFrameElement>document.getElementById("main-slideshow");
+        mainSlideshow.src = "https://docs.google.com/presentation/d/e/2PACX-1vTseQFFzxuE8YVJVj5xKX-DMbW49n_E8K1BAfl3sG9pVMNENLGWMRs1YWFNXyrVEiuJ1ZXYMw_lxxMo/embed?start=true&loop=true&delayms=10000";
+
+        mainSlideshow.addEventListener("load", () => {
+            tick();
+        });
     }
 
     function tickDropdownNav(event?: MouseEvent) {
@@ -53,17 +60,14 @@ export namespace ResponsiveElements {
         }
     }
 
-    function mainSlideshow() {
+    function mainSlideshow(responsive: boolean) {
         const mainSlideshow = <HTMLIFrameElement>document.getElementById("main-slideshow");
+        const ASPECT_R = 1440 / 839;
+        const width = window.innerWidth - 200;
+        const height = width / ASPECT_R;
+        mainSlideshow.setAttribute("width", width.toString());
+        mainSlideshow.setAttribute("height", height.toString());
 
-        mainSlideshow.src = "https://docs.google.com/presentation/d/e/2PACX-1vTseQFFzxuE8YVJVj5xKX-DMbW49n_E8K1BAfl3sG9pVMNENLGWMRs1YWFNXyrVEiuJ1ZXYMw_lxxMo/embed?start=true&loop=true&delayms=10000";
-        window.addEventListener("resize", () => {
-            const ASPECT_R = 1440 / 839;
-            const width = window.innerWidth - 200;
-            const height = width / ASPECT_R;
-            mainSlideshow.setAttribute("width", width.toString());
-            mainSlideshow.setAttribute("height", height.toString());
-        });
     }
 
     export function tick() {
@@ -94,9 +98,10 @@ export namespace ResponsiveElements {
             header["links"].style.marginTop = "20px";
             header["action-nav"].style.transform = "scale(1.5)";
             header["action-nav"].style.marginTop = "20px";
+            footer["main-content"].style.flexDirection = "column";
             tickDropdownNav();
         } else {
-            header["nav"].style.marginTop = "20px";
+            header["nav"].style.marginTop = "40px";
             header["nav"].style.flexDirection = "row";
             header["nav"].style.width = "calc(100% - 16px - 45px)";
             header["nav"].style.left = "20px";
@@ -114,6 +119,7 @@ export namespace ResponsiveElements {
             header["links"].style.marginTop = "0px";
             header["action-nav"].style.transform = "scale(1)";
             header["action-nav"].style.marginTop = "0px";
+            footer["main-content"].style.flexDirection = "row";
         }
     }
 }
