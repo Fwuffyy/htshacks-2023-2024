@@ -1,22 +1,18 @@
-import express from "express"
-import { TesseractAPI} from "./tesseract";
-import Tesseract, {createWorker} from "tesseract.js";
+import express from "express";
 
+import { TesseractAPI } from "./tesseract";
 
+const port = 25565;
 const app = express();
 
-app.listen(25565, () => {
-    console.log("Listening on :25565");
-    /*TesseractAPI.read("https://tesseract.projectnaptha.com/img/eng_bw.png").then(s => {
-        console.log(s);
-    });*/
+console.log("Loading tesseract");
+
+TesseractAPI.init().then(() => {
+    app.listen(port, () => {
+        console.log("Listening on :" + port);
+    });
+
     (async () => {
-        const worker = await createWorker();
-        await worker.load();
-        await worker.loadLanguage("eng");
-        await worker.initialize("eng");
-        /*const ret = await worker.recognize('https://tesseract.projectnaptha.com/img/eng_bw.png');
-        console.log(ret.data.text);
-        await worker.terminate();*/
-      })();
+        console.log(await TesseractAPI.read("https://i.ytimg.com/vi/3NxTbAxWxqA/maxresdefault.jpg"));
+    })();
 });

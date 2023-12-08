@@ -1,20 +1,24 @@
-import Tesseract, { createWorker } from "tesseract.js";
+import axios from "axios"
+import sharp from "sharp"
+import tesseract from "tesseract.js"
 
 export namespace TesseractAPI {
-    export async function read(link: string): Promise<string> {
-        console.log("Link:", link);
-        try {
-            const worker = await createWorker();
-            const ret = await worker.recognize(link);
+    export const worker = tesseract.createWorker();
 
-            // Cleanup
-            await worker.terminate();
+    export async function init() {
+        await worker.load();
+        await worker.loadLanguage("eng");
+        await worker.initialize("eng");
+    }
 
-            return ret.data.text;
-        } catch (error) {
-            console.error("Error in Tesseract read:", error);
-            throw error; // rethrow the error
-        }
+    export async function read(link: string): Promise<tesseract.Block[]> {
+        return new Promise(resultingText => {
+            axios.get(link, { "responseType": "arraybuffer" }).then(async (res) => {
+                const image = sharp(res.data).grayscale();
+                const data = await worker.recognize(await image.toBuffer());
+                resultingText(data.data.blocks);
+            });
+        });
     }
 }
 
