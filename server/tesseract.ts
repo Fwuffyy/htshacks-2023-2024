@@ -1,14 +1,12 @@
-import { createWorker } from "tesseract.js"
+import Tesseract, { createWorker } from "tesseract.js"
 
 export namespace TesseractAPI {
-    // Code here...
-
-    export async function read(link:string) {
-        const worker = await createWorker();
-        const ret = await worker.recognize(link);
-        return ret.data.text;
+    export function read(link: string): Promise<string> {
+        return new Promise(res => {
+            createWorker("eng", 1);
+            // createWorker("eng").then(worker => {
+            //     // worker.recognize(link);
+            // });
+        });
     }
-
-
-    
 }
